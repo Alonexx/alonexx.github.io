@@ -10,7 +10,7 @@ keywords: Android, Java
 
 ## Nullable
 
-```Java
+```
 public class SomeModel {
   @Nullable
   public SomeField getSomeField();
@@ -19,7 +19,7 @@ public class SomeModel {
 
 在调用这段代码的时候，通常我们使用
 
-```Java
+```
 if (someModel.getSomeField() != null) {
   view.setSomeField(someModel.getSomeField());
 }
@@ -27,7 +27,7 @@ if (someModel.getSomeField() != null) {
 
 如果这样写会更好：
 
-```java
+```
 if (someModel.hasSomeField()) {
   view.setSomeField(someModel.getSomeField());
 }
@@ -35,7 +35,7 @@ if (someModel.hasSomeField()) {
 
 ##### 如果在 Java 8 环境下或者引入了 Google Guava ，还可以这样写：
 
-```java
+```
 public class SomeModel {
   Optional<SomeField> getSomeField();
 }
@@ -48,7 +48,7 @@ if (field.isPresent()) {
 
 或者：
 
-```java
+```
 public class SomeModel {
   @Nullable
   public SomeField getSomeField();
@@ -68,7 +68,7 @@ if (desc.isPresent()) {
 
 我们一定会遇到处理时间的时候写
 
-```java
+```
 private Data mData;
 private long mUpdateTimeMillis;
 
@@ -88,7 +88,7 @@ public boolean isDataValid() {
 
 如果这样就会更有可读性
 
-```java
+```
 public boolean isDataValid() {
   long currentMillis = System.currentTimeMillis();
   return (currentMillis - mUpdateTimeMillis < TimeUnit.HOURS.toMillis(1));
@@ -99,7 +99,7 @@ public boolean isDataValid() {
 
 这段代码你能看出来他干了什么嘛？
 
-```java
+```
 // start : "10:24"
 // durationMinutes : 105
 private void setEndTime(String start, long durationMinutes) {
@@ -120,7 +120,7 @@ private void setEndTime(String start, long durationMinutes) {
 
 这样是不是就清楚多了：
 
-```java
+```
 private void setEndTime(String date, String start, long durationMinutes) {
   SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
   try {
@@ -144,7 +144,7 @@ private void setEndTime(String date, String start, long durationMinutes) {
 
 例如：
 
-```java
+```
 public static String getShowSeats(MovieSeatOrder bean) {
   if (bean == null || bean.getSeats() == null) {
       return "";
@@ -161,7 +161,7 @@ public static String getShowSeats(MovieSeatOrder bean) {
 
 好的写法应该是：
 
-```java
+```
 public static String getShowSeatsDescription(MovieSeatOrder bean) {
   checkNotNull(bean); // throws an NullPointerException if null.
   if (bean.isValid()) { // contains a non-empty seat list.
@@ -185,7 +185,7 @@ public void showSeatsDescription() {
 
 再例如：
 
-```java
+```
 public static boolean verifyPermissions(int[] grantResults) {
   if (grantResults == null) {
     return false;
@@ -205,7 +205,7 @@ public static boolean verifyPermissions(int[] grantResults) {
 
 这个方法返回值有问题，参数为 `null` 是无意义的，如果是个空数组，应该返回 `true` 。因为循环中的逻辑是：有假则返回假。
 
-```java
+```
 public static boolean verifyPermissions(int[] grantResults) {
   checkNotNull(grantResults);
   for (int result : grantResults) {
@@ -225,7 +225,7 @@ public static boolean verifyPermissions(int[] grantResults) {
 
 你的用户可能会调用：
 
-```java
+```
 initialize(someArgument).calculate(data).dispatch();
 ```
 
@@ -233,7 +233,7 @@ initialize(someArgument).calculate(data).dispatch();
 
 返回 `null` 还有另外一个问题，如果我们从网络来的数据是不可信任的，那么我们要及时对这些不可信任的数据进行处理，而不是让错误蔓延。
 
-```java
+```
 public T getData() {
   return success ? data : null;
 }
@@ -247,7 +247,7 @@ public T getData() {
 
 Java 代码似乎要比其他语言更现代，更容易写，也更容易写出糟糕的代码。我曾经见过这样一段代码：
 
-```java
+```
 class FooFragment extends Fragment {
   
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -268,7 +268,7 @@ class FooFragment extends Fragment {
 
 跨层级依赖：我们在代码中应该尽量依赖较高层级的类，而不是调用最底层的方法。
 
-```java
+```
     /**
      * 将衍生品、小吃订单转化为请求中的字符串格式
      *
@@ -297,7 +297,7 @@ class FooFragment extends Fragment {
 
 函数式大多数会更有表现力，比如查找满足条件的对象所在的位置：
 
-```java
+```
 for (int i = 0; i < movies.size(); i++) {
   long id = movies.get(i).getId();
   if (id == movieId) {
@@ -311,7 +311,7 @@ selection = Iterables.indexOf(movies, movie -> movie.getId() == movieId);
 
 比如寻找集合中最大的值：
 
-```java
+```
 int max = Integer.MIN_VALUE;
 for (int i = 0; i < data.size(); i++) {
   int value = data.get(i);
@@ -325,7 +325,7 @@ int max = Collections.max(data);
 
 比如字符串组合：
 
-```java
+```
 StringBuilder sb = new StringBuilder();
 for (SeatInfoBean t : currentSelect) {
   sb.append(t.getSeats()).append(",");
