@@ -75,13 +75,6 @@ private long mUpdateTimeMillis;
 public boolean isDataValid() {
   long currentMillis = System.currentTimeMillis();
   // expire time is 1h.
-  String abc = "abc";
-  String c = abc + "c";
-  String d = new String("abc");
-  String e = d + c;
-  SStringBuilder sb = new StringBuilder();
-  sb.append("a").append(d).append ......;
-  for ()
   return (currentMillis - mUpdateTimeMillis < 1 * 60 * 60 * 1000);
 }
 ```
@@ -200,7 +193,6 @@ public static boolean verifyPermissions(int[] grantResults) {
   }
   return true;
 }
-
 ```
 
 这个方法返回值有问题，参数为 `null` 是无意义的，如果是个空数组，应该返回 `true` 。因为循环中的逻辑是：有假则返回假。
@@ -256,7 +248,6 @@ class FooFragment extends Fragment {
       return ...;
     } else if (activity instanceof BarActivity) {
       return ...;
-      onFragmentDosomething(Fragment f);
     } else {
       return ...;
     }
