@@ -1,3 +1,11 @@
+---
+layout: post
+title: 书写优雅的代码
+categories: [Android 实践]
+description: 
+keywords: Android, Java
+---
+
 # 书写优雅的代码
 
 ## Nullable
