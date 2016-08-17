@@ -33,7 +33,7 @@ if (someModel.hasSomeField()) {
 }
 ```
 
-##### 如果在 Java 8 环境下或者引入了 Google Guava ，还可以这样写：
+如果在 Java 8 环境下或者引入了 Google Guava ，还可以这样写：
 
 ```
 public class SomeModel {
